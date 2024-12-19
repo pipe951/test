@@ -3,7 +3,7 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                bat 'call build.bat'
+                bat 'call build_and_deploy.bat'
             }
         }
         stage('Deploy') {
