@@ -1,5 +1,18 @@
 pipeline {
     agent any
+    stages {
+        stage('Checkout') {
+            steps {
+                 git branch: 'main', url: 'https://your-repository-url'
+            }
+        }
+        stage('Install Dependencies') {
+            steps {
+                script {
+                    bat 'npm install'
+                }
+            }
+        }
         stage('Run Tests') {
             steps {
                 script {
