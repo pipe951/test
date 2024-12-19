@@ -3,7 +3,7 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                 git branch: 'main', url: 'https://github.com/pipe951/test.git'
+                git branch: 'main', url: 'https://github.com/username/repository.git'
             }
         }
         stage('Install Dependencies') {
@@ -20,22 +20,15 @@ pipeline {
                 }
             }
         }
-        stage('Build') {
+        stage('Archive Test Results') {
             steps {
-                script {
-                    bat 'npm run build'
-                }
-            }
-        }
-        stage('Publish HTML Report') {
-            steps {
-                archiveArtifacts artifacts: '**/*.html', allowEmptyArchive: true
+                archiveArtifacts artifacts: '**/test-results/**/*.xml', allowEmptyArchive: true  // เก็บไฟล์ XML
             }
         }
     }
     post {
         always {
-            junit '**/test-*.xml' // ใช้สำหรับบันทึกผลทดสอบหากใช้ Jest หรือ Mocha
+            junit '**/test-results/**/*.xml'  // อ่านผลทดสอบจากไฟล์ XML
         }
     }
 }
