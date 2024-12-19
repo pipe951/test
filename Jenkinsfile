@@ -1,18 +1,5 @@
 pipeline {
     agent any
-    stages {
-        stage('Checkout') {
-            steps {
-                git 'https://github.com/pipe951/test.git'
-            }
-        }
-        stage('Install Dependencies') {
-            steps {
-                script {
-                    bat 'npm install'
-                }
-            }
-        }
         stage('Run Tests') {
             steps {
                 script {
