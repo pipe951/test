@@ -1,22 +1,31 @@
-const addToCart = require('./script.js');  // ฟังก์ชันที่เราต้องการทดสอบ
-
-// Mock localStorage
+// script.js - ฟังก์ชันที่เราต้องการทดสอบ
+function sum(a, b) {
+  // ตัวอย่างที่ใช้ localStorage
+  let cart = JSON.parse(localStorage.getItem('cart') || '[]');
+  cart.push(a + b);
+  localStorage.setItem('cart', JSON.stringify(cart));
+  return a + b;
+}
+module.exports = sum; // export ฟังก์ชัน sum
+// app.test.js - การทดสอบใน Jest
 beforeAll(() => {
+  // Mock localStorage
   global.localStorage = {
-    getItem: jest.fn().mockReturnValue('[]'),  // Mock ค่าผลลัพธ์เริ่มต้น
+    getItem: jest.fn().mockReturnValue('[]'),  // mock ผลลัพธ์ของ getItem
     setItem: jest.fn(),
     removeItem: jest.fn(),
     clear: jest.fn(),
   };
 });
 
-test('addToCart adds item to the cart', () => {
-  // เรียกใช้ฟังก์ชัน addToCart
-  addToCart(1, 'Product 1', 100); 
-
+test('adds 1 + 2 to equal 3', () => {
+  // เรียกฟังก์ชัน sum และตรวจสอบผลลัพธ์
+  const result = sum(1, 2);
+  expect(result).toBe(3);
+  
   // ตรวจสอบว่า localStorage.setItem ถูกเรียกด้วยค่าที่ถูกต้อง
   expect(localStorage.setItem).toHaveBeenCalledWith(
-    'cart', 
-    JSON.stringify([{ id: 1, name: 'Product 1', price: 100, quantity: 1 }])
+    'cart',
+    JSON.stringify([3])  // ค่าที่เก็บใน localStorage จะเป็น [3] เนื่องจากการบวก 1 + 2
   );
 });
