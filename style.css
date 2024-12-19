@@ -6,7 +6,7 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'Roboto', sans-serif;
+    font-family: Roboto, sans-serif;
 }
 
 body {
@@ -24,11 +24,8 @@ body {
 body::before {
     content: '';
     position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: rgba(0, 0, 0, 0.85);
+    inset: 10px 20px 30px 40px;
+    background-color: rgb(255 255 255 / 85%)
     z-index: -1;
 }
 
@@ -44,7 +41,7 @@ body::before {
     position: sticky;
     top: 0;
     z-index: 10;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 2px 4px rgb(255 255 255 / 20%)
 }
 
 .navbar h1 {
@@ -69,14 +66,14 @@ body::before {
 
 .navbar nav a:hover {
     color: #fff;
-    background-color: rgba(212, 175, 55, 0.5);
+    background-color: rgb(212, 175, 55, 50%);
     transform: translateY(-2px);
-    box-shadow: 0px 2px 4px rgba(212, 175, 55, 0.2);
+    box-shadow: 0px 2px 4px rgb(212, 175, 55, 20%);
     border-radius: 10px;
 }
 
 .navbar nav a.active {
-    background-color: rgba(212, 175, 55, 0.7);
+    background-color: rgb(212, 175, 55, 70%);
     color: #fff;
 }
 
@@ -88,7 +85,7 @@ body::before {
 
     .navbar nav a:hover,
     .navbar nav a.active {
-        background-color: rgba(212, 175, 55, 0.5);
+        background-color: rgb(212, 175, 55, 50%);
         color: #fff;
         transform: none;
         box-shadow: none;
@@ -122,7 +119,7 @@ body::before {
     justify-content: center;
     align-items: center;
     transition: all 0.3s ease;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 2px 8px rgb(0, 0, 0, 20%);
 }
 
 .cart-link:hover #cart-count {
@@ -161,14 +158,14 @@ body::before {
     position: fixed;
     bottom: 20px;
     right: 20px;
-    background-color: rgba(0, 0, 0, 0.95);
+    background-color: rgb(0, 0, 0, 95%);
     color: #d4af37;
     padding: 2rem;
     width: 350px;
     max-height: 80%;
     overflow-y: auto;
     border-radius: 15px;
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.7);
+    box-shadow: 0 8px 16px rgb(0, 0, 0, 70%);
     display: none;
     z-index: 100;
     transform: translateY(100%);
@@ -196,7 +193,7 @@ body::before {
 
 /* Cart Popup Content */
 .cart-popup-content {
-    background-color: rgba(0, 0, 0, 0.8);
+    background-color: rgb(0, 0, 0, 80%);
     padding: 20px;
     border-radius: 15px;
 }
@@ -364,7 +361,7 @@ body::before {
     padding: 4rem 2rem;
     text-align: center;
     border-radius: 0 0 15px 15px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 8px rgb(0, 0, 0, 10%);
     position: relative;
 }
 
@@ -375,7 +372,7 @@ body::before {
     left: 0;
     right: 0;
     bottom: 0;
-    background: rgba(0, 0, 0, 0.7);
+    background: rgb(0, 0, 0, 70%);
     border-radius: 0 0 15px 15px;
     z-index: 1;
 }
@@ -383,7 +380,7 @@ body::before {
 .banner h2, .banner p {
     position: relative;
     z-index: 2;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+    text-shadow: 2px 2px 4px rgb(0, 0, 0, 70%);
 }
 
 .banner h2 {
@@ -402,10 +399,10 @@ body::before {
     max-width: 1200px;
     padding: 3rem 0;
     text-align: center;
-    background-color: rgba(68, 68, 68, 0.9);
+    background-color: rgb(68, 68, 68, 90%);
     color: #d4af37;
     border-radius: 15px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 12px rgb(0, 0, 0, 10%);
     margin: 2rem auto;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     scroll-margin-top: 80px;
@@ -413,7 +410,7 @@ body::before {
 
 .products:hover {
     transform: translateY(-5px);
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 8px 16px rgb(0, 0, 0, 20%);
 }
 
 .products h2 {
@@ -421,7 +418,7 @@ body::before {
     font-weight: 700;
     margin-bottom: 1.5rem;
     color: #d4af37;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+    text-shadow: 2px 2px 4px rgb(0, 0, 0, 70%);
 }
 
 .product-list {
@@ -435,7 +432,7 @@ body::before {
     background-color: #333;
     width: 280px;
     border-radius: 15px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 12px rgb(0, 0, 0, 10%);
     overflow: hidden;
     text-align: center;
     transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
@@ -445,7 +442,7 @@ body::before {
 
 .product-item:hover {
     transform: translateY(-5px);
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 8px 16px rgb(0, 0, 0, 20%);
 }
 
 .product-item img {
@@ -518,7 +515,7 @@ body::before {
 .footer {
     width: 100%;
     padding: 1rem 0;
-    background-color: rgba(51, 51, 51, 0.8);
+    background-color: rgb(51, 51, 51, 80%);
     color: #fff;
     text-align: center;
     border-top: 2px solid #d4af37;
@@ -531,10 +528,10 @@ body::before {
     max-width: 800px;
     padding: 3rem 0;
     text-align: center;
-    background-color: rgba(68, 68, 68, 0.9);
+    background-color: rgb(68, 68, 68, 90%);
     color: #d4af37;
     border-radius: 15px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 12px rgb(0, 0, 0, 10%);
     margin: 2rem auto;
 }
 
@@ -562,10 +559,10 @@ html {
     max-width: 800px;
     padding: 2rem 0;
     text-align: center;
-    background-color: rgba(68, 68, 68, 0.9);
+    background-color: rgb(68, 68, 68, 90%);
     color: #d4af37;
     border-radius: 15px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 12px rgb(0, 0, 0, 10%);
     margin: 1rem auto;
 }
 
@@ -676,7 +673,7 @@ html {
     }
     50% {
         transform: scale(1.2);
-        background-color: rgba(255, 87, 34, 0.2);
+        background-color: rgb(255, 87, 34, 20%);
     }
 }
 
@@ -709,13 +706,13 @@ html {
         position: absolute;
         top: 60px;
         right: 0;
-        background-color: rgba(51, 51, 51, 0.95);
+        background-color: rgb(51, 51, 51, 95%);
         width: 100%;
         text-align: center;
         transition: transform 0.3s ease, opacity 0.3s ease;
         transform: translateY(-100%);
         opacity: 0;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        box-shadow: 0 4px 8px rgb(0, 0, 0, 20%);
         border-radius: 0 0 10px 10px;
     }
     .navbar nav.open {
@@ -725,7 +722,7 @@ html {
     }
     .navbar nav a {
         padding: 1rem 0;
-        border-bottom: 1px solid rgba(212, 175, 55, 0.2);
+        border-bottom: 1px solid rgb(212, 175, 55, 20%);
     }
     .navbar nav a:last-child {
         border-bottom: none;
@@ -822,13 +819,13 @@ html {
         position: absolute;
         top: 60px;
         right: 0;
-        background-color: rgba(51, 51, 51, 0.95);
+        background-color: rgb(51, 51, 51, 95%);
         width: 100%;
         text-align: center;
         transition: transform 0.3s ease, opacity 0.3s ease;
         transform: translateY(-100%);
         opacity: 0;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        box-shadow: 0 4px 8px rgb(0, 0, 0, 20%);
         border-radius: 0 0 10px 10px;
     }
 
@@ -840,7 +837,7 @@ html {
 
     .navbar nav a {
         padding: 1rem 0;
-        border-bottom: 1px solid rgba(212, 175, 55, 0.2);
+        border-bottom: 1px solid rgb(212, 175, 55, 20%);
     }
 
     .navbar nav a:last-child {
