@@ -1,6 +1,7 @@
 {
   "name": "web-project",
   "version": "1.0.0",
+  "type": "module",
   "scripts": {
     "test": "jest",
     "build": "echo 'Build Completed!'"
