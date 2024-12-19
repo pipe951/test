@@ -1,21 +1,19 @@
 // eslint.config.js
-import { defineConfig } from 'eslint';
+const { defineConfig } = require('eslint');
 
-export default defineConfig({
+module.exports = defineConfig({
   languageOptions: {
     globals: {
-      // ตัวแปร global ที่ต้องการใช้ในโค้ด เช่น:
-      // window: "readonly",
-      // process: "readonly",
+      // กำหนด global variables ที่ต้องการ
     },
     parserOptions: {
-      ecmaVersion: 2020, // ใช้ ECMAScript เวอร์ชัน 2020
+      ecmaVersion: 2020,
     },
   },
   extends: [
-    'eslint:recommended', // ใช้คำแนะนำจาก ESLint
+    'eslint:recommended',
   ],
   rules: {
-    // เพิ่มกฎที่ต้องการที่นี่
+    // เพิ่มกฎที่ต้องการ
   },
 });
