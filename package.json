@@ -1,0 +1,11 @@
+{
+  "name": "web-project",
+  "version": "1.0.0",
+  "scripts": {
+    "test": "jest",
+    "build": "echo 'Build Completed!'"
+  },
+  "devDependencies": {
+    "jest": "^28.0.0"
+  }
+}
