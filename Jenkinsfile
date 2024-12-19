@@ -3,7 +3,7 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                git 'https://your-repository-url'
+                git 'https://github.com/pipe951/test.git'
             }
         }
         stage('Install Dependencies') {
