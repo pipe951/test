@@ -13,7 +13,7 @@ pipeline {
             steps {
                 script {
                     echo 'Starting Build...'
-                    bat 'call build.bat'  // รัน build.bat สำหรับ Windows
+                    bat 'call tests\\build.bat'  // รัน build.bat สำหรับ Windows
                 }
             }
         }
@@ -23,7 +23,7 @@ pipeline {
             steps {
                 script {
                     echo 'Running Tests...'
-                    bat 'call run_tests.bat'  // รัน Unit Test Script
+                    bat 'call tests\\run_tests.bat'  // รัน Unit Test Script
                 }
             }
             post {
@@ -39,7 +39,7 @@ pipeline {
                 script {
                     echo 'Deploying Application...'
                     // รันคำสั่งสำหรับการ Deploy เช่น copy ไฟล์ไปยัง server หรือรัน script
-                    bat 'call deploy.bat'
+                    bat 'call tests\\deploy.bat'
                 }
             }
         }
