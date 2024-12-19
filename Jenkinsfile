@@ -1,67 +1,41 @@
 pipeline {
     agent any
-
-    environment {
-        // กำหนด Environment Variables ที่จำเป็น
-        BUILD_DIR = 'build'
-        TEST_DIR = 'tests'
-    }
-
     stages {
-        // ขั้นตอนการ Build
+        stage('Checkout') {
+            steps {
+                git 'https://your-repository-url'
+            }
+        }
+        stage('Install Dependencies') {
+            steps {
+                script {
+                    bat 'npm install'
+                }
+            }
+        }
+        stage('Run Tests') {
+            steps {
+                script {
+                    bat 'npm test'
+                }
+            }
+        }
         stage('Build') {
             steps {
                 script {
-                    echo 'Starting Build...'
-                    bat 'call tests\\build.bat'  // รัน build.bat สำหรับ Windows
+                    bat 'npm run build'
                 }
             }
         }
-
-        // ขั้นตอนการ Test
-        stage('Test') {
+        stage('Publish HTML Report') {
             steps {
-                script {
-                    echo 'Running Tests...'
-                    bat 'call tests\\run_tests.bat'  // รัน Unit Test Script
-                }
-            }
-            post {
-                always {
-                    junit '**/test-*.xml'  // อ่านผลจาก Unit Test หากมี
-                }
-            }
-        }
-
-        // ขั้นตอนการ Deploy
-        stage('Deploy') {
-            steps {
-                script {
-                    echo 'Deploying Application...'
-                    // รันคำสั่งสำหรับการ Deploy เช่น copy ไฟล์ไปยัง server หรือรัน script
-                    bat 'call tests\\deploy.bat'
-                }
-            }
-        }
-
-        // ขั้นตอนการแจ้งเตือนเมื่อเสร็จสิ้น
-        stage('Notify') {
-            steps {
-                script {
-                    echo 'Sending Notifications...'
-                    // ส่งการแจ้งเตือน เช่น ผ่าน Slack, Email หรืออื่น ๆ
-                    // Slack plugin หรือ Email plugin สามารถใช้ในการแจ้งเตือน
-                }
+                archiveArtifacts artifacts: '**/*.html', allowEmptyArchive: true
             }
         }
     }
-
     post {
-        success {
-            echo 'Build and Deploy Completed Successfully!'
-        }
-        failure {
-            echo 'Build or Deploy Failed!'
+        always {
+            junit '**/test-*.xml' // ใช้สำหรับบันทึกผลทดสอบหากใช้ Jest หรือ Mocha
         }
     }
 }
