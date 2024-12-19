@@ -65,16 +65,16 @@ body::before {
 }
 
 .navbar nav a:hover {
-    color: #fff;
-    background-color: rgb(212, 175, 55, 50%);
+    color: rgb(100% 100% 100%);
+    background-color: rgb(83.1% 68.6% 21.6% / 50%);
     transform: translateY(-2px);
-    box-shadow: 0px 2px 4px rgb(212, 175, 55, 20%);
+    box-shadow: 0 2px 4px rgb(83.1% 68.6% 21.6% / 20%);
     border-radius: 10px;
 }
 
 .navbar nav a.active {
-    background-color: rgb(212, 175, 55, 70%);
-    color: #fff;
+    background-color: rgb(83.1% 68.6% 21.6% / 70%);
+    color: rgb(100% 100% 100%);
 }
 
 /* Responsive adjustments */
@@ -85,8 +85,8 @@ body::before {
 
     .navbar nav a:hover,
     .navbar nav a.active {
-        background-color: rgb(212, 175, 55, 50%);
-        color: #fff;
+        background-color: rgb(83.1% 68.6% 21.6% / 50%);
+        color: rgb(100% 100% 100%);
         transform: none;
         box-shadow: none;
     }
@@ -402,7 +402,8 @@ body::before {
     max-width: 1200px;
     padding: 3rem 0;
     text-align: center;
-    background-color: rgb(68, 68, 68, 90%);
+    background-color: rgb(26.7% 26.7% 26.7% / 90%);
+
     color: #d4af37;
     border-radius: 15px;
     box-shadow: 0 4px 12px rgb(0, 0, 0, 10%);
@@ -518,7 +519,7 @@ body::before {
 .footer {
     width: 100%;
     padding: 1rem 0;
-    background-color: rgb(51, 51, 51, 80%);
+    background-color: rgb(20% 20% 20% / 80%);
     color: #fff;
     text-align: center;
     border-top: 2px solid #d4af37;
@@ -531,7 +532,7 @@ body::before {
     max-width: 800px;
     padding: 3rem 0;
     text-align: center;
-    background-color: rgb(68, 68, 68, 90%);
+    background-color: rgb(27% 27% 27% / 90%);
     color: #d4af37;
     border-radius: 15px;
     box-shadow: 0 4px 12px rgb(0, 0, 0, 10%);
@@ -562,7 +563,7 @@ html {
     max-width: 800px;
     padding: 2rem 0;
     text-align: center;
-    background-color: rgb(68, 68, 68, 90%);
+    background-color: rgb(27% 27% 27% / 90%);
     color: #d4af37;
     border-radius: 15px;
     box-shadow: 0 4px 12px rgb(0, 0, 0, 10%);
@@ -676,7 +677,7 @@ html {
     }
     50% {
         transform: scale(1.2);
-        background-color: rgb(100%, 87, 34, 20%);
+        background-color: rgb(100% 34% 13% / 20%);
     }
 }
 
@@ -709,7 +710,7 @@ html {
         position: absolute;
         top: 60px;
         right: 0;
-        background-color: rgb(51, 51, 51, 95%);
+        background-color: rgb(20% 20% 20% / 95%);
         width: 100%;
         text-align: center;
         transition: transform 0.3s ease, opacity 0.3s ease;
@@ -725,7 +726,7 @@ html {
     }
     .navbar nav a {
         padding: 1rem 0;
-        border-bottom: 1px solid rgb(212, 175, 55, 20%);
+        border-bottom: 1px solid rgb(83% 69% 22% / 20%);
     }
     .navbar nav a:last-child {
         border-bottom: none;
@@ -822,7 +823,7 @@ html {
         position: absolute;
         top: 60px;
         right: 0;
-        background-color: rgb(51, 51, 51, 95%);
+        background-color: rgb(20% 20% 20% / 95%);
         width: 100%;
         text-align: center;
         transition: transform 0.3s ease, opacity 0.3s ease;
@@ -840,7 +841,7 @@ html {
 
     .navbar nav a {
         padding: 1rem 0;
-        border-bottom: 1px solid rgb(212, 175, 55, 20%);
+        border-bottom: 1px solid rgb(83% 69% 22% / 20%);
     }
 
     .navbar nav a:last-child {
