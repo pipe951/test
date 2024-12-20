@@ -15,7 +15,8 @@ describe('Cart functionality', () => {
         `;
 
         // ใช้ jest.spyOn เพื่อตรวจสอบว่า addEventListener ถูกเรียก
-        jest.spyOn(document.getElementById('checkoutButton'), 'addEventListener');
+        const checkoutButton = document.getElementById('checkoutButton');
+        jest.spyOn(checkoutButton, 'addEventListener');
         
         // โหลดสคริปต์ที่มีการเพิ่ม event listener ให้กับปุ่ม checkoutButton
         require('./script');  // สมมุติว่า script.js ของคุณทำการผูก event listener ในปุ่มนี้
