@@ -16,8 +16,12 @@ beforeEach(() => {
   localStorage.removeItem.mockReset();
   localStorage.clear.mockReset();
 
-  // จำลอง checkoutButton element
-  document.body.innerHTML = `<button id="checkoutButton">Checkout</button>`;
+  // จำลอง checkoutButton element (ตรวจสอบว่า HTML ถูกต้อง)
+  document.body.innerHTML = `
+    <div>
+      <button id="checkoutButton">Checkout</button>
+    </div>
+  `;
 });
 
 test('addToCart adds an item to the cart', () => {
@@ -38,6 +42,9 @@ test('checkoutButton triggers event correctly', () => {
   const button = document.getElementById('checkoutButton');
   const mockFunction = jest.fn();
 
+  // ตรวจสอบว่าปุ่มถูกสร้างแล้วจริง
+  expect(button).not.toBeNull();
+
   button.addEventListener('click', mockFunction);
   button.click(); // จำลองการคลิกปุ่ม
 
@@ -45,7 +52,7 @@ test('checkoutButton triggers event correctly', () => {
 });
 
 afterEach(() => {
-  // Reset mock หลังการทดสอบแต่ละกรณี (Optional แต่ช่วยให้ทดสอบแยกจากกันได้ดีขึ้น)
+  // Reset mock หลังการทดสอบแต่ละกรณี
   localStorage.getItem.mockReset();
   localStorage.setItem.mockReset();
   localStorage.removeItem.mockReset();
