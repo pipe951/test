@@ -1,4 +1,5 @@
-module.exports = {
+// jest.config.js (เปลี่ยนเป็น ESM syntax)
+export default {
   testResultsProcessor: "jest-junit",  // ใช้ jest-junit สำหรับแปลงผลทดสอบเป็น XML
   reporters: [
     "default",  // ใช้ reporter ปกติ
