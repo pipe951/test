@@ -17,4 +17,5 @@ module.exports = {
   },
   moduleFileExtensions: ['js', 'jsx', 'ts', 'tsx'],  // รองรับการใช้ไฟล์ JavaScript, JSX, TypeScript, TSX
   setupFiles: ['./jest.setup.js'],  // เพิ่มไฟล์ setup สำหรับ mock global variables
+  testEnvironment: 'jsdom', // ใช้ jsdom สำหรับจำลอง DOM เช่น document และ window
 };
