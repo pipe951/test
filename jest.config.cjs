@@ -10,7 +10,5 @@ module.exports = {
       }
     ]
   ],
-  transform: {
-    '^.+\\.js$': 'babel-jest', // ใช้ babel-jest แปลงไฟล์ .js
   },
 };
