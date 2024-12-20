@@ -1,4 +1,4 @@
-const { addToCart, removeFromCart, updateCartCount } = require('../script.js');
+import { addToCart, removeFromCart, updateCartCount } from '../script.js';
 
 test('addToCart adds an item to the cart', () => {
     const cart = [];
