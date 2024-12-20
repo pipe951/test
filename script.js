@@ -76,15 +76,16 @@ function removeFromCart(id) {
 }
 
 document.addEventListener('DOMContentLoaded', function () {
-    const cartItemsElement = document.getElementById('cart-items');
-    if (cartItemsElement) {
-        cartItemsElement.addEventListener('input', function (event) {
-            if (event.target.tagName === 'INPUT' && event.target.type === 'number') {
-                const itemId = parseInt(event.target.closest('.cart-item').dataset.id, 10);
-                updateQuantity(itemId, event.target.value);
-            }
-        });
-    }
+    const cartItems = document.getElementById('cart-items');
+if (cartItems) {
+    cartItems.addEventListener('input', function(event) {
+        if (event.target.tagName === 'INPUT' && event.target.type === 'number') {
+            const itemId = parseInt(event.target.closest('.cart-item').dataset.id, 10);
+            updateQuantity(itemId, event.target.value);
+        }
+    });
+}
+
 
     const checkoutButton = document.getElementById("checkoutButton");
     if (checkoutButton) {
