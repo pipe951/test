@@ -1,3 +1,5 @@
-module.exports = {
-  presets: ['@babel/preset-env'], // แปลงโค้ด ES6+ ให้รองรับทุกสภาพแวดล้อม
+export default {
+  presets: [
+    '@babel/preset-env',  // แปลงโค้ด ES6+ ไปเป็น CommonJS
+  ],
 };
