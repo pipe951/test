@@ -16,4 +16,5 @@ module.exports = {
     '^.+\\.ts$': 'ts-jest',      // แปลงไฟล์ TypeScript
   },
   moduleFileExtensions: ['js', 'jsx', 'ts', 'tsx'],  // รองรับการใช้ไฟล์ JavaScript, JSX, TypeScript, TSX
+  setupFiles: ['./jest.setup.js'],  // เพิ่มไฟล์ setup สำหรับ mock global variables
 };
