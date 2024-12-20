@@ -21,6 +21,15 @@ global.document.getElementById = jest.fn().mockImplementation((id) => {
       textContent: '',  // Mock textContent
     };
   }
+  if (id === 'cart-count') {
+    return {
+      classList: {
+        add: jest.fn(),
+        remove: jest.fn(),
+      },
+      textContent: '',  // Mock textContent for cart-count
+    };
+  }
   if (id === 'checkoutButton') {
     return {
       addEventListener: jest.fn(),  // mock addEventListener
