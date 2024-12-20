@@ -9,6 +9,5 @@ module.exports = {
         outputName: "TESTS-results.xml"     // ชื่อไฟล์ผลทดสอบ
       }
     ]
-  ],
-  },
+  ]
 };
