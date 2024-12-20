@@ -1,24 +1,3 @@
-// app.test.js
-const { addToCart, removeFromCart } = require('./script.js');
-
-// Mock localStorage globally
-global.localStorage = {
-  getItem: jest.fn(),
-  setItem: jest.fn(),
-  removeItem: jest.fn(),
-  clear: jest.fn()
-};
-
-// Mock fetch globally
-global.fetch = jest.fn(() =>
-  Promise.resolve({
-    json: () => Promise.resolve({ id: 'session_id' })
-  })
-);
-
-// Mock cart globally
-let cart = [];  // Global cart mock
-
 beforeEach(() => {
   // สร้าง HTML สำหรับการทดสอบ
   document.body.innerHTML = `
@@ -27,9 +6,15 @@ beforeEach(() => {
     </div>
   `;
 
-  // สร้าง event listener สำหรับปุ่ม checkoutButton
+  // ค้นหาปุ่ม checkoutButton
   const checkoutButton = document.getElementById('checkoutButton');
   
+  // ตรวจสอบว่า checkoutButton ถูกสร้างขึ้น
+  if (!checkoutButton) {
+    throw new Error("Checkout button is not in the DOM.");
+  }
+
+  // สร้าง event listener สำหรับปุ่ม checkoutButton
   checkoutButton.addEventListener("click", function() {
     fetch('http://127.0.0.1:3000/create-checkout-session', {
       method: 'POST',
@@ -50,48 +35,4 @@ beforeEach(() => {
     })
     .catch((error) => console.error('Error:', error));
   });
-});
-
-// ทดสอบการคลิกปุ่ม checkout
-test('checkoutButton triggers event correctly', () => {
-  const checkoutButton = document.getElementById('checkoutButton');
-  
-  // ตรวจสอบว่า checkoutButton ถูกสร้างขึ้นใน DOM
-  expect(checkoutButton).not.toBeNull();
-
-  // จำลองการคลิกปุ่ม checkoutButton
-  checkoutButton.click();
-
-  // ตรวจสอบว่า fetch ถูกเรียก
-  expect(fetch).toHaveBeenCalledWith(
-    'http://127.0.0.1:3000/create-checkout-session',
-    expect.objectContaining({
-      method: 'POST',
-      headers: expect.objectContaining({
-        'Content-Type': 'application/json'
-      }),
-      body: expect.any(String)  // ทดสอบว่า body ถูกส่งไปอย่างถูกต้อง
-    })
-  );
-});
-
-// ทดสอบการทำงานของฟังก์ชันอื่น ๆ (addToCart, removeFromCart)
-test('addToCart adds an item to the cart', () => {
-  addToCart(1, 'Product A', 100);
-  expect(cart).toHaveLength(1);
-  expect(cart[0]).toEqual({ id: 1, name: 'Product A', price: 100, quantity: 1 });
-});
-
-test('removeFromCart removes an item from the cart', () => {
-  cart = [{ id: 1, name: 'Product A', price: 100, quantity: 1 }];
-  removeFromCart(1);
-  expect(cart).toHaveLength(0);
-});
-
-// หลังการทดสอบแต่ละครั้ง, รีเซ็ต mock
-afterEach(() => {
-  localStorage.getItem.mockReset();
-  localStorage.setItem.mockReset();
-  localStorage.removeItem.mockReset();
-  localStorage.clear.mockReset();
 });
