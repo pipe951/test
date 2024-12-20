@@ -18,6 +18,7 @@ beforeAll(() => {
 
   // Mocking document.getElementById
   global.document.getElementById = jest.fn().mockImplementation((id) => {
+    const mockElement = { addEventListener: jest.fn() };  // Mock addEventListener
     if (id === 'cart-count') {
       return { 
         classList: { add: jest.fn(), remove: jest.fn() }, 
@@ -28,11 +29,9 @@ beforeAll(() => {
     } else if (id === 'cart-total') {
       return { textContent: '' };
     } else if (id === 'checkoutButton') {
-      return {
-        addEventListener: jest.fn(),  // Mock addEventListener
-      };
+      return mockElement;  // Return mocked element for checkoutButton
     }
-    return null;  // Return null for other elements
+    return mockElement;  // Default return for other elements
   });
 });
 
