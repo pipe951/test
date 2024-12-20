@@ -1,5 +1,5 @@
 // app.test.js
-const { addToCart, removeFromCart, updateCartCount } = require('./script.js');
+const { addToCart, removeFromCart } = require('./script.js');
 
 // Mock localStorage globally
 global.localStorage = {
@@ -16,6 +16,9 @@ global.fetch = jest.fn(() =>
   })
 );
 
+// Mock cart globally
+let cart = [];  // Global cart mock
+
 beforeEach(() => {
   // สร้าง HTML สำหรับการทดสอบ
   document.body.innerHTML = `
@@ -24,20 +27,16 @@ beforeEach(() => {
     </div>
   `;
 
-  // จำลองการคลิกปุ่ม checkoutButton
+  // สร้าง event listener สำหรับปุ่ม checkoutButton
   const checkoutButton = document.getElementById('checkoutButton');
   
-  // Mock addEventListener
-  checkoutButton.addEventListener = jest.fn();
-  
-  // สร้าง event listener ตามที่โค้ดจริงใช้
   checkoutButton.addEventListener("click", function() {
     fetch('http://127.0.0.1:3000/create-checkout-session', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({ cart: [] })  // ส่งข้อมูลรถเข็นเป็น array ว่าง
+      body: JSON.stringify({ cart })  // ส่งข้อมูลรถเข็นเป็น array ที่เราจำลอง
     })
     .then((response) => response.json())
     .then((data) => {
@@ -63,20 +62,28 @@ test('checkoutButton triggers event correctly', () => {
   // จำลองการคลิกปุ่ม checkoutButton
   checkoutButton.click();
 
-  // ตรวจสอบว่า addEventListener ถูกเรียก
-  expect(checkoutButton.addEventListener).toHaveBeenCalled();
+  // ตรวจสอบว่า fetch ถูกเรียก
+  expect(fetch).toHaveBeenCalledWith(
+    'http://127.0.0.1:3000/create-checkout-session',
+    expect.objectContaining({
+      method: 'POST',
+      headers: expect.objectContaining({
+        'Content-Type': 'application/json'
+      }),
+      body: expect.any(String)  // ทดสอบว่า body ถูกส่งไปอย่างถูกต้อง
+    })
+  );
 });
 
 // ทดสอบการทำงานของฟังก์ชันอื่น ๆ (addToCart, removeFromCart)
 test('addToCart adds an item to the cart', () => {
-  const cart = [];
   addToCart(1, 'Product A', 100);
   expect(cart).toHaveLength(1);
   expect(cart[0]).toEqual({ id: 1, name: 'Product A', price: 100, quantity: 1 });
 });
 
 test('removeFromCart removes an item from the cart', () => {
-  const cart = [{ id: 1, name: 'Product A', price: 100, quantity: 1 }];
+  cart = [{ id: 1, name: 'Product A', price: 100, quantity: 1 }];
   removeFromCart(1);
   expect(cart).toHaveLength(0);
 });
