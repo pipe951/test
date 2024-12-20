@@ -1,4 +1,3 @@
-// app.test.js (ใช้ CommonJS syntax)
 const { addToCart, removeFromCart, updateCartCount } = require('./script.js');
 
 // Mock localStorage globally
@@ -9,7 +8,6 @@ global.localStorage = {
   clear: jest.fn()
 };
 
-// จำลองการตั้งค่า DOM ก่อนการทดสอบ
 beforeEach(() => {
   // กำหนด HTML ใน DOM สำหรับทดสอบ
   document.body.innerHTML = `
@@ -18,8 +16,11 @@ beforeEach(() => {
     </div>
   `;
 
-  // ตั้งค่าฟังก์ชัน addEventListener เพื่อหลีกเลี่ยงการทำงานจริง
+  // ตรวจสอบว่า checkoutButton ถูกสร้างขึ้นจริง
   const checkoutButton = document.getElementById('checkoutButton');
+  expect(checkoutButton).not.toBeNull();
+
+  // Mock ฟังก์ชัน addEventListener ของ checkoutButton
   checkoutButton.addEventListener = jest.fn();
 });
 
