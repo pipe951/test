@@ -25,7 +25,7 @@ body::before {
     content: '';
     position: absolute;
     inset: 10px 20px 30px 40px;
-    background-color: rgb(100% 100% 100% / 85%);
+    background-color: color(srgb 1 1 1 / 0.85);
     z-index: -1;
 }
 
@@ -66,14 +66,14 @@ body::before {
 
 .navbar nav a:hover {
     color: rgb(100% 100% 100%);
-    background-color: rgb(83.1% 68.6% 21.6% / 50%);
+    background-color: color(srgb 0.831 0.686 0.216 / 0.5);
     transform: translateY(-2px);
     box-shadow: 0 2px 4px rgb(83.1% 68.6% 21.6% / 20%);
     border-radius: 10px;
 }
 
 .navbar nav a.active {
-    background-color: rgb(83.1% 68.6% 21.6% / 70%);
+    background-color: color(srgb 0.831 0.686 0.216 / 0.7);
     color: rgb(100% 100% 100%);
 }
 
@@ -85,7 +85,7 @@ body::before {
 
     .navbar nav a:hover,
     .navbar nav a.active {
-        background-color: rgb(83.1% 68.6% 21.6% / 50%);
+        background-color: color(srgb 0.831 0.686 0.216 / 0.5);
         color: rgb(100% 100% 100%);
         transform: none;
         box-shadow: none;
@@ -158,7 +158,7 @@ body::before {
     position: fixed;
     bottom: 20px;
     right: 20px;
-    background-color: rgb(0, 0, 0, 95%);
+    background-color: color(srgb 0 0 0 / 0.95);
     color: #d4af37;
     padding: 2rem;
     width: 350px;
@@ -193,7 +193,7 @@ body::before {
 
 /* Cart Popup Content */
 .cart-popup-content {
-    background-color: rgb(0, 0, 0, 80%);
+    background-color: color(srgb 0 0 0 / 0.95);
     padding: 20px;
     border-radius: 15px;
 }
@@ -402,7 +402,7 @@ body::before {
     max-width: 1200px;
     padding: 3rem 0;
     text-align: center;
-    background-color: rgb(26.7% 26.7% 26.7% / 90%);
+    background-color: color(srgb 0.267 0.267 0.267 / 0.9);
 
     color: #d4af37;
     border-radius: 15px;
@@ -519,7 +519,7 @@ body::before {
 .footer {
     width: 100%;
     padding: 1rem 0;
-    background-color: rgb(20% 20% 20% / 80%);
+    background-color: color(srgb 0.2 0.2 0.2 / 0.8);
     color: #fff;
     text-align: center;
     border-top: 2px solid #d4af37;
@@ -532,7 +532,7 @@ body::before {
     max-width: 800px;
     padding: 3rem 0;
     text-align: center;
-    background-color: rgb(27% 27% 27% / 90%);
+    background-color: color(srgb 0.27 0.27 0.27 / 0.9);
     color: #d4af37;
     border-radius: 15px;
     box-shadow: 0 4px 12px rgb(0, 0, 0, 10%);
@@ -563,7 +563,7 @@ html {
     max-width: 800px;
     padding: 2rem 0;
     text-align: center;
-    background-color: rgb(27% 27% 27% / 90%);
+    background-color: color(srgb 0.27 0.27 0.27 / 0.9);
     color: #d4af37;
     border-radius: 15px;
     box-shadow: 0 4px 12px rgb(0, 0, 0, 10%);
@@ -677,7 +677,7 @@ html {
     }
     50% {
         transform: scale(1.2);
-        background-color: rgb(100% 34% 13% / 20%);
+        background-color: color(srgb 1 0.34 0.13 / 0.2);
     }
 }
 
@@ -710,7 +710,7 @@ html {
         position: absolute;
         top: 60px;
         right: 0;
-        background-color: rgb(20% 20% 20% / 95%);
+        background-color: color(srgb 0.2 0.2 0.2 / 0.95);
         width: 100%;
         text-align: center;
         transition: transform 0.3s ease, opacity 0.3s ease;
@@ -823,7 +823,7 @@ html {
         position: absolute;
         top: 60px;
         right: 0;
-        background-color: rgb(20% 20% 20% / 95%);
+        background-color: color(srgb 0.2 0.2 0.2 / 0.95);
         width: 100%;
         text-align: center;
         transition: transform 0.3s ease, opacity 0.3s ease;
