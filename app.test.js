@@ -1,38 +1,37 @@
-beforeEach(() => {
-  // สร้าง HTML สำหรับการทดสอบ
-  document.body.innerHTML = `
-    <div>
-      <button id="checkoutButton">Checkout</button>
-    </div>
-  `;
+const { addToCart, removeFromCart, updateQuantity, saveCart } = require('./cart'); // คำสั่งนี้ให้แน่ใจว่าได้ใส่ path ของไฟล์ JS ที่คุณต้องการทดสอบ
 
-  // ค้นหาปุ่ม checkoutButton
-  const checkoutButton = document.getElementById('checkoutButton');
-  
-  // ตรวจสอบว่า checkoutButton ถูกสร้างขึ้น
-  if (!checkoutButton) {
-    throw new Error("Checkout button is not in the DOM.");
-  }
+describe('Cart functionality', () => {
+    let cart;
 
-  // สร้าง event listener สำหรับปุ่ม checkoutButton
-  checkoutButton.addEventListener("click", function() {
-    fetch('http://127.0.0.1:3000/create-checkout-session', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({ cart })  // ส่งข้อมูลรถเข็นเป็น array ที่เราจำลอง
-    })
-    .then((response) => response.json())
-    .then((data) => {
-      const stripe = Stripe('pk_test_51QLRDULXE6bgMjnAORtQGcif8tr8KYrFSyybsGtU6R8DNbt93AEOKOgdmEdvMrWXyJeSNRpkqXof8qaSeOjzwOru00eQdAqNEm');
-      return stripe.redirectToCheckout({ sessionId: data.id });
-    })
-    .then((result) => {
-      if (result.error) {
-        alert(result.error.message);
-      }
-    })
-    .catch((error) => console.error('Error:', error));
-  });
+    beforeEach(() => {
+        // สร้าง cart ใหม่ทุกครั้งก่อนการทดสอบ
+        cart = [];
+        global.localStorage = { setItem: jest.fn(), getItem: jest.fn(() => JSON.stringify(cart)) };
+    });
+
+    test('add item to cart', () => {
+        addToCart(1, 'Item 1', 100);
+        expect(cart.length).toBe(1); // ตรวจสอบว่าเพิ่มสินค้าลงในรถเข็น
+        expect(cart[0].id).toBe(1);
+        expect(cart[0].name).toBe('Item 1');
+        expect(cart[0].price).toBe(100);
+    });
+
+    test('remove item from cart', () => {
+        addToCart(1, 'Item 1', 100);
+        removeFromCart(1);
+        expect(cart.length).toBe(0); // ตรวจสอบว่าลบสินค้าจากรถเข็น
+    });
+
+    test('update quantity', () => {
+        addToCart(1, 'Item 1', 100);
+        updateQuantity(1, 3); // อัปเดตจำนวน
+        expect(cart[0].quantity).toBe(3);
+    });
+
+    test('save cart to localStorage', () => {
+        addToCart(1, 'Item 1', 100);
+        saveCart();
+        expect(localStorage.setItem).toHaveBeenCalledWith('cart', JSON.stringify(cart));
+    });
 });
