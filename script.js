@@ -75,37 +75,38 @@ function removeFromCart(id) {
     displayCart();  // Update display after item removal
 }
 
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
+    const cartItemsElement = document.getElementById('cart-items');
+    if (cartItemsElement) {
+        cartItemsElement.addEventListener('input', function (event) {
+            if (event.target.tagName === 'INPUT' && event.target.type === 'number') {
+                const itemId = parseInt(event.target.closest('.cart-item').dataset.id, 10);
+                updateQuantity(itemId, event.target.value);
+            }
+        });
+    }
+
     const checkoutButton = document.getElementById("checkoutButton");
     if (checkoutButton) {
-        checkoutButton.addEventListener("click", function() {
-            fetch('http://127.0.0.1:3000/create-checkout-session', {  // ใช้พอร์ต 3000 ที่เซิร์ฟเวอร์ Express รัน
+        checkoutButton.addEventListener("click", function () {
+            fetch('http://127.0.0.1:3000/create-checkout-session', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
                 },
-                body: JSON.stringify({ cart })  // ส่งข้อมูลรถเข็นไปยังเซิร์ฟเวอร์
+                body: JSON.stringify({ cart }),
             })
             .then((response) => response.json())
             .then((data) => {
-                const stripe = Stripe('pk_test_51QLRDULXE6bgMjnAORtQGcif8tr8KYrFSyybsGtU6R8DNbt93AEOKOgdmEdvMrWXyJeSNRpkqXof8qaSeOjzwOru00eQdAqNEm');  // ใส่ Stripe Public Key ของคุณ
-                return stripe.redirectToCheckout({ sessionId: data.id });  // เปลี่ยนเส้นทางไปยัง Stripe Checkout
+                const stripe = Stripe('your-stripe-public-key');
+                return stripe.redirectToCheckout({ sessionId: data.id });
             })
-            .then((result) => {
-                if (result.error) {
-                    alert(result.error.message);  // แจ้งเตือนเมื่อเกิดข้อผิดพลาด
-                }
-            })
-            .catch((error) => console.error('Error:', error));  // ตรวจสอบข้อผิดพลาดที่เกิดขึ้น
+            .catch((error) => console.error('Error:', error));
         });
     } else {
         console.warn('Checkout button not found in DOM.');
     }
 });
-
-
-
-
 
 // Toggle cart popup visibility with bounce effect
 function toggleCart() {
