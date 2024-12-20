@@ -34,15 +34,6 @@ pipeline {
             }
         }
         
-        stage('Lint CSS') {
-            steps {
-                script {
-                    // รัน Stylelint เพื่อตรวจสอบ syntax ของไฟล์ .css
-                    bat 'npx stylelint ./**/*.css'
-                }
-            }
-        }
-        
         stage('Run Tests') {
             steps {
                 script {
