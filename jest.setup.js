@@ -1,4 +1,5 @@
 // jest.setup.js
+
 // Mock localStorage globally
 global.localStorage = {
   getItem: jest.fn(),
@@ -12,6 +13,12 @@ global.document.getElementById = jest.fn().mockImplementation((id) => {
   if (id === 'cart-items') {
     return {
       addEventListener: jest.fn(),  // mock addEventListener
+      innerHTML: '',  // Mock innerHTML
+    };
+  }
+  if (id === 'cart-total') {
+    return {
+      textContent: '',  // Mock textContent
     };
   }
   if (id === 'checkoutButton') {
