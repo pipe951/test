@@ -1,5 +1,9 @@
-export default {
+module.exports = {
   presets: [
-    '@babel/preset-env',  // แปลงโค้ด ES6+ ไปเป็น CommonJS
+    '@babel/preset-env',
+    '@babel/preset-react' // หากคุณใช้ React
+  ],
+  plugins: [
+    '@babel/plugin-transform-runtime'
   ],
 };
