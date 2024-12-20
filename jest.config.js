@@ -9,5 +9,8 @@ export default {
         outputName: "TESTS-results.xml"     // ชื่อไฟล์ผลทดสอบ
       }
     ]
-  ]
+  ],
+  transform: {
+    '^.+\\.js$': 'babel-jest', // ใช้ babel-jest แปลงไฟล์ .js
+  },
 };
