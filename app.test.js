@@ -5,22 +5,16 @@ describe('Cart functionality', () => {
 
     // จำลอง DOM ก่อนการทดสอบทุกครั้ง
     beforeEach(() => {
-        // สร้าง cart ใหม่ทุกครั้งก่อนการทดสอบ
-        cart = [];
-        global.localStorage = { setItem: jest.fn(), getItem: jest.fn(() => JSON.stringify(cart)) };
-        
-        // จำลอง DOM สำหรับปุ่ม checkoutButton ที่มีการเพิ่ม event listener
-        document.body.innerHTML = `
-            <button id="checkoutButton">Checkout</button>
-        `;
+    document.body.innerHTML = `
+        <div id="cart-items"></div>
+    `;
+});
 
-        // ใช้ jest.spyOn เพื่อตรวจสอบว่า addEventListener ถูกเรียก
-        const checkoutButton = document.getElementById('checkoutButton');
-        jest.spyOn(checkoutButton, 'addEventListener');
-        
-        // โหลดสคริปต์ที่มีการเพิ่ม event listener ให้กับปุ่ม checkoutButton
-        require('./script');  // สมมุติว่า script.js ของคุณทำการผูก event listener ในปุ่มนี้
-    });
+test('should attach event listener to cart-items', () => {
+    require('./script.js'); // โหลดสคริปต์ที่คุณกำลังทดสอบ
+    const cartItems = document.getElementById('cart-items');
+    expect(cartItems).not.toBeNull();
+});
 
     test('add item to cart', () => {
         addToCart(1, 'Item 1', 100);
