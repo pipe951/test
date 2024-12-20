@@ -100,6 +100,5 @@ test('checkoutButton should add event listener for click', () => {
   const button = document.getElementById('checkoutButton');
 
   // Check if addEventListener was called with 'click' and a function
-  expect(button).not.toBeNull(); // Ensure button is not null
   expect(button.addEventListener).toHaveBeenCalledWith('click', expect.any(Function));
 });
