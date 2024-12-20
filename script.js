@@ -2,14 +2,19 @@
 let cart = JSON.parse(localStorage.getItem('cart')) || [];
 
 // Function to add item to cart
-function addToCart(id, name, pricekIndex)(item => item.id === id);
+function addToCart(id, name, price) {
+    // ตรวจหาสินค้าว่าอยู่ในรถเข็นแล้วหรือไม่
+    const itemIndex = cart.findIndex(item => item.id === id);
+
     if (itemIndex > -1) {
-        alert("สินค้านี้อยู่ในjรuyข็นแล้ว!"); // Alert if item is already in the cart
-        return; // Exit the function if ukthe item is already in the cart
+        alert("สินค้านี้อยู่ในรายการแล้ว!"); // Alert หากสินค้านี้อยู่ในรถเข็นแล้ว
+        return; // ออกจากฟังก์ชันหากสินค้านั้นอยู่ในรถเข็นแล้ว
     } else {
+        // เพิ่มสินค้าลงในรถเข็น
         cart.push({ id, name, price, quantity: 1 });
     }
-uktyu
+}
+
     saveCart();
     updateCartCount();  // Update cart count on the navbar
     displayCart();  // Display cart items in the popup
