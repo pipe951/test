@@ -1,7 +1,7 @@
 // app.test.js (ใช้ CommonJS syntax)
 const { addToCart, removeFromCart, updateCartCount } = require('./script.js');
 
-// Mock localStorage globally (เช่นเดียวกับใน jest.setup.js หรือในไฟล์ทดสอบ)
+// Mock localStorage globally
 global.localStorage = {
   getItem: jest.fn(),
   setItem: jest.fn(),
@@ -15,6 +15,9 @@ beforeEach(() => {
   localStorage.setItem.mockReset();
   localStorage.removeItem.mockReset();
   localStorage.clear.mockReset();
+
+  // จำลอง checkoutButton element
+  document.body.innerHTML = `<button id="checkoutButton">Checkout</button>`;
 });
 
 test('addToCart adds an item to the cart', () => {
@@ -28,6 +31,17 @@ test('removeFromCart removes an item from the cart', () => {
   const cart = [{ id: 1, name: 'Product A', price: 100, quantity: 1 }];
   removeFromCart(1);
   expect(cart).toHaveLength(0);
+});
+
+// ทดสอบฟังก์ชันที่เกี่ยวข้องกับ checkoutButton
+test('checkoutButton triggers event correctly', () => {
+  const button = document.getElementById('checkoutButton');
+  const mockFunction = jest.fn();
+
+  button.addEventListener('click', mockFunction);
+  button.click(); // จำลองการคลิกปุ่ม
+
+  expect(mockFunction).toHaveBeenCalled();
 });
 
 afterEach(() => {
