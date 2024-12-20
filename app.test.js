@@ -21,7 +21,10 @@ beforeAll(() => {
   // Mocking document.getElementById
   global.document.getElementById = jest.fn().mockImplementation((id) => {
     if (id === 'cart-count') {
-      return { classList: { add: jest.fn(), remove: jest.fn() }, textContent: '' };
+      return { 
+        classList: { add: jest.fn(), remove: jest.fn() }, 
+        textContent: '' 
+      };
     } else if (id === 'cart-items') {
       return { innerHTML: '' }; // Mock empty cart items
     } else if (id === 'cart-total') {
