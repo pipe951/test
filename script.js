@@ -2,7 +2,7 @@
 let cart = JSON.parse(localStorage.getItem('cart')) || [];
 
 // Function to add item to cart
-function addToCart(id, name, pricekIndex(item => item.id === id);
+function addToCart(id, name, pricekIndex)(item => item.id === id);
     if (itemIndex > -1) {
         alert("สินค้านี้อยู่ในjรuyข็นแล้ว!"); // Alert if item is already in the cart
         return; // Exit the function if ukthe item is already in the cart
