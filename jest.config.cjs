@@ -13,4 +13,5 @@ module.exports = {
   transform: {
     '^.+\\.js$': 'babel-jest', // ใช้ babel-jest แปลงไฟล์ .js
   },
+  extensionsToTreatAsEsm: ['.js'],  // ตั้งค่าให้ไฟล์ .js เป็น ESM
 };
