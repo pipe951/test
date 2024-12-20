@@ -9,5 +9,10 @@ module.exports = {
         outputName: "TESTS-results.xml"     // ชื่อไฟล์ผลทดสอบ
       }
     ]
-  ]
+  ],
+  transform: {
+    '^.+\\.jsx?$': 'babel-jest', // แปลงไฟล์ JavaScript หรือ JSX
+    '^.+\\.ts$': 'ts-jest',      // แปลงไฟล์ TypeScript
+  },
+  moduleFileExtensions: ['js', 'jsx', 'ts', 'tsx'],  // รองรับการใช้ไฟล์ JavaScript, JSX, TypeScript, TSX
 };
