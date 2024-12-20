@@ -13,7 +13,7 @@ export default [
       },
     },
     rules: {
-      'no-console': 'warn',  // กฎการใช้ console
+      'no-console': 'off',  // กฎการใช้ console
       // กฎอื่น ๆ ที่ต้องการ
     },
   },
