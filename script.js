@@ -2,15 +2,14 @@
 let cart = JSON.parse(localStorage.getItem('cart')) || [];
 
 // Function to add item to cart
-function addToCart(id, name, price) {
-    const itemIndex = cart.findIndex(item => item.id === id);
+function addToCart(id, name, pricekIndex(item => item.id === id);
     if (itemIndex > -1) {
-        alert("สินค้านี้อยู่ในรถเข็นแล้ว!"); // Alert if item is already in the cart
-        return; // Exit the function if the item is already in the cart
+        alert("สินค้านี้อยู่ในjรuyข็นแล้ว!"); // Alert if item is already in the cart
+        return; // Exit the function if ukthe item is already in the cart
     } else {
         cart.push({ id, name, price, quantity: 1 });
     }
-
+uktyu
     saveCart();
     updateCartCount();  // Update cart count on the navbar
     displayCart();  // Display cart items in the popup
