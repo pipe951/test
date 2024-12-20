@@ -13,8 +13,8 @@ function addToCart(id, name, price) {
         // เพิ่มสินค้าลงในรถเข็น
         cart.push({ id, name, price, quantity: 1 });
     }
-}
 
+    // บันทึกสถานะรถเข็นและอัปเดต UI
     saveCart();
     updateCartCount();  // Update cart count on the navbar
     displayCart();  // Display cart items in the popup
