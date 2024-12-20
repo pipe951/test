@@ -1,5 +1,3 @@
-const { addToCart, removeFromCart, updateQuantity, saveCart } = require('./script'); // นำเข้าฟังก์ชันที่ต้องการทดสอบ
-
 describe('Cart functionality', () => {
     let cart;
 
@@ -23,7 +21,9 @@ describe('Cart functionality', () => {
     });
 
     test('should attach event listener to cart-items', () => {
+        // โหลด script.js หลังจากสร้าง DOM
         require('./script.js'); // โหลดสคริปต์ที่กำลังทดสอบ
+
         const cartItems = document.getElementById('cart-items');
         expect(cartItems).not.toBeNull();
     });
@@ -63,7 +63,9 @@ describe('Cart functionality', () => {
         // Mock addEventListener using jest.spyOn
         const addEventListenerSpy = jest.spyOn(checkoutButton, 'addEventListener');
 
+        // โหลด script.js หลังจาก checkoutButton ถูกสร้าง
         require('./script.js'); // โหลดสคริปต์
+
         expect(addEventListenerSpy).toHaveBeenCalledWith('click', expect.any(Function));
     });
 });
