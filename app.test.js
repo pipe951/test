@@ -1,4 +1,13 @@
-const { addToCart, removeFromCart, increaseQuantity, decreaseQuantity, updateQuantity, saveCart, displayCart, updateCartCount } = require('./script');  // สมมติว่า script.js ถูก export ฟังก์ชันต่างๆ ไว้
+const { 
+  addToCart, 
+  removeFromCart, 
+  increaseQuantity, 
+  decreaseQuantity, 
+  updateQuantity, 
+  saveCart, 
+  displayCart, 
+  updateCartCount 
+} = require('./script');  // สมมติว่า script.js ถูก export ฟังก์ชันต่างๆ ไว้
 
 // Mocking localStorage
 beforeAll(() => {
@@ -6,7 +15,7 @@ beforeAll(() => {
     getItem: jest.fn(() => JSON.stringify([])),
     setItem: jest.fn(),
   };
-  
+
   // Mocking document.getElementById
   global.document.getElementById = jest.fn().mockImplementation((id) => {
     if (id === 'cart-count') {
@@ -16,7 +25,9 @@ beforeAll(() => {
     } else if (id === 'cart-total') {
       return { textContent: '' };
     } else if (id === 'checkoutButton') {
-      return { addEventListener: jest.fn() };
+      return {
+        addEventListener: jest.fn(),  // Mock addEventListener
+      };
     }
     return null;
   });
@@ -83,4 +94,11 @@ test('displayCart should display empty cart message when cart is empty', () => {
   expect(cartTotal.textContent).toBe('0.00');
 });
 
-// Additional UI tests for cart-count updates can be added here
+// Testing checkoutButton event listener
+test('checkoutButton should add event listener for click', () => {
+  // Trigger the function that attaches the event listener to checkoutButton
+  const button = document.getElementById('checkoutButton');
+
+  // Check if addEventListener was called with 'click' and a function
+  expect(button.addEventListener).toHaveBeenCalledWith('click', expect.any(Function));
+});
