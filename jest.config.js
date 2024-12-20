@@ -1,4 +1,4 @@
-export = {
+export default {
   testResultsProcessor: "jest-junit",  // ใช้ jest-junit สำหรับแปลงผลทดสอบเป็น XML
   reporters: [
     "default",  // ใช้ reporter ปกติ
