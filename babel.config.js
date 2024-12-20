@@ -1,9 +1,3 @@
 module.exports = {
-  presets: [
-    '@babel/preset-env',
-    '@babel/preset-react' // หากคุณใช้ React
-  ],
-  plugins: [
-    '@babel/plugin-transform-runtime'
-  ],
+  presets: ['@babel/preset-env'],  // ใช้ @babel/preset-env สำหรับการแปลง JavaScript
 };
