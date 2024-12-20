@@ -1,4 +1,4 @@
-const { addToCart, removeFromCart, updateQuantity, saveCart } = require('./cart'); // คำสั่งนี้ให้แน่ใจว่าได้ใส่ path ของไฟล์ JS ที่คุณต้องการทดสอบ
+const { addToCart, removeFromCart, updateQuantity, saveCart } = require('./script'); // คำสั่งนี้ให้แน่ใจว่าได้ใส่ path ของไฟล์ JS ที่คุณต้องการทดสอบ
 
 describe('Cart functionality', () => {
     let cart;
