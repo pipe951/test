@@ -93,7 +93,7 @@ body.main-page .navbar .main-nav a.active {
 }
 
 /* Responsive adjustments */
-@media (max-width: 768px) {
+@media (min-width: 768px) {
     html body .navbar .main-nav a {
         padding: 0.5rem 0.8rem;
     }
@@ -416,7 +416,7 @@ html body .cart-popup .cart-summary {
 /* เซเลกเตอร์สำหรับ .products */
 .products {
     width: 90%;
-    max-width: 1200px;
+    min-width: 1200px;
     padding: 3rem 0;
     text-align: center;
     background-color: color(srgb 0.267 0.267 0.267 / 0.9);
@@ -532,7 +532,7 @@ html body .cart-popup .cart-summary {
 }
 
 /* Responsive Design */
-@media (max-width: 768px) {
+@media (min-width: 768px) {
     .product-list {
         flex-direction: column;
         align-items: center;
@@ -557,7 +557,7 @@ html body .cart-popup .cart-summary {
 /* เพิ่มความเฉพาะเจาะจงให้กับ .about */
 body .about {
     width: 90%;
-    max-width: 800px;
+    min-width: 800px;
     padding: 3rem 0;
     text-align: center;
     background-color: color(srgb 0.27 0.27 0.27 / 0.9);
@@ -584,7 +584,7 @@ body .about p {
 /* เพิ่มความเฉพาะเจาะจงให้กับ .contact */
 body .contact {
     width: 90%;
-    max-width: 800px;
+    min-width: 800px;
     padding: 2rem 0;
     text-align: center;
     background-color: color(srgb 0.27 0.27 0.27 / 0.9);
@@ -654,7 +654,7 @@ body .contact-info {
 body .contact-info span {
     white-space: normal;
     flex: 1 1 100%;
-    max-width: 100%;
+    min-width: 100%;
 }
 
 /* เพิ่มความเฉพาะเจาะจงให้กับ .navbar h1 a */
@@ -733,7 +733,7 @@ body .hamburger div {
     transition: all 0.3s ease;
 }
 
-@media (max-width: 768px) {
+@media (min-width: 768px) {
     body .hamburger {
         display: flex;
     }
@@ -813,14 +813,14 @@ body .fa-magnifying-glass {
 }
 
 /* Responsive adjustments */
-@media (max-width: 768px) {
+@media (min-width: 768px) {
     .search-input {
         width: 200px;
     }
 }
 
 /* เพิ่มความเฉพาะเจาะจงใน media query */
-@media (max-width: 768px) {
+@media (min-width: 768px) {
     body .navbar {
         flex-direction: column;
         align-items: flex-start;
@@ -893,7 +893,7 @@ body .fa-magnifying-glass {
 }
 
 /* เพิ่มความเฉพาะเจาะจงใน media query */
-@media (max-width: 768px) {
+@media (min-width: 768px) {
     body .banner h2 {
         font-size: 2rem;
     }
@@ -904,7 +904,7 @@ body .fa-magnifying-glass {
 }
 
 /* เพิ่มความเฉพาะเจาะจงใน media query */
-@media (max-width: 768px) {
+@media (min-width: 768px) {
     body .about, body .contact {
         width: 95%;
         padding: 2rem 1rem;
@@ -920,7 +920,7 @@ body .fa-magnifying-glass {
 }
 
 /* Responsive adjustments for Footer */
-@media (max-width: 768px) {
+@media (min-width: 768px) {
     body .footer {
         padding: 1rem;
         font-size: 0.9rem;
@@ -928,7 +928,7 @@ body .fa-magnifying-glass {
 }
 
 /* Responsive adjustments for Search Input */
-@media (max-width: 768px) {
+@media (min-width: 768px) {
     body .search-input {
         width: 200px;
     }
