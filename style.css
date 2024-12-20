@@ -693,7 +693,7 @@ html {
 }
 
 /* Keyframes สำหรับ bounceEffect */
-@keyframes bounceEffect {
+@keyframes bounce-effect {
     0%, 20%, 50%, 80%, 100% {
         transform: translateY(0);
     }
@@ -712,7 +712,7 @@ body .cart-link.highlight {
 }
 
 /* Keyframes สำหรับ highlightEffect */
-@keyframes highlightEffect {
+@keyframes highlight-effect {
     0%, 100% {
         transform: scale(1);
         background-color: transparent;
