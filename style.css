@@ -29,7 +29,6 @@ html body.main-page::before {
     z-index: -1;
 }
 
-/* Navbar */
 /* ก่อนแก้ */
 .navbar {
     width: 100%;
@@ -95,7 +94,6 @@ body.main-page .navbar .main-nav a.active {
 
 /* Responsive adjustments */
 @media (max-width: 768px) {
-    /* เซเลกเตอร์ที่เฉพาะเจาะจงมากขึ้น */
     html body .navbar .main-nav a {
         padding: 0.5rem 0.8rem;
     }
@@ -325,7 +323,6 @@ html body .cart-popup .cart-summary {
     color: #d4af37;
 }
 
-/* Cart Buttons */
 /* เซเลกเตอร์ทั่วไปสำหรับปุ่ม */
 .cart-buttons button {
     margin: 10px;
@@ -354,7 +351,6 @@ html body .cart-popup .cart-summary {
     background-color: #5a6268;
 }
 
-/* Close Button */
 /* เซเลกเตอร์สำหรับปุ่ม close-button ภายใน .cart-popup */
 .cart-popup .close-button {
     background-color: #6c757d;
@@ -372,7 +368,6 @@ html body .cart-popup .cart-summary {
     background-color: #5a6268;
 }
 
-/* Banner */
 /* เซเลกเตอร์สำหรับ .banner */
 .banner {
     background: url('img/music.jpg') no-repeat center center;
@@ -418,7 +413,6 @@ html body .cart-popup .cart-summary {
     font-size: 1.2rem;
 }
 
-/* Product Section */
 /* เซเลกเตอร์สำหรับ .products */
 .products {
     width: 90%;
@@ -539,7 +533,6 @@ html body .cart-popup .cart-summary {
 
 /* Responsive Design */
 @media (max-width: 768px) {
-    /* เซเลกเตอร์ที่เฉพาะเจาะจงมากที่สุดจะต้องอยู่ข้างหน้า */
     .product-list {
         flex-direction: column;
         align-items: center;
@@ -561,7 +554,6 @@ html body .cart-popup .cart-summary {
     margin-top: 2rem;
 }
 
-/* About Us Section */
 /* เพิ่มความเฉพาะเจาะจงให้กับ .about */
 body .about {
     width: 90%;
@@ -705,7 +697,6 @@ html {
     }
 }
 
-/* Highlight effect for cart icon */
 /* เพิ่มความเฉพาะเจาะจงโดยการใช้ body */
 body .cart-link.highlight {
     animation: highlightEffect 0.5s ease-in-out;
@@ -723,7 +714,6 @@ body .cart-link.highlight {
     }
 }
 
-/* Hamburger Menu */
 /* เพิ่มความเฉพาะเจาะจงโดยการใช้ body */
 body .hamburger {
     display: none;
@@ -795,7 +785,6 @@ body .hamburger.active {
     transform: scale(1.1);
 }
 
-/* Search Container Styling */
 /* เพิ่มความเฉพาะเจาะจงโดยการใช้ body หรือ html */
 body .search-container {
     display: flex;
@@ -830,7 +819,6 @@ body .fa-magnifying-glass {
     }
 }
 
-/* Responsive adjustments for Navbar */
 /* เพิ่มความเฉพาะเจาะจงใน media query */
 @media (max-width: 768px) {
     body .navbar {
@@ -904,7 +892,6 @@ body .fa-magnifying-glass {
     }
 }
 
-/* Responsive adjustments for Banner */
 /* เพิ่มความเฉพาะเจาะจงใน media query */
 @media (max-width: 768px) {
     body .banner h2 {
@@ -916,8 +903,6 @@ body .fa-magnifying-glass {
     }
 }
 
-
-/* Responsive adjustments for About and Contact Sections */
 /* เพิ่มความเฉพาะเจาะจงใน media query */
 @media (max-width: 768px) {
     body .about, body .contact {
