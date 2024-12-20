@@ -1,76 +1,69 @@
-describe('Cart functionality', () => {
-    let cart;
+const { addToCart, removeFromCart, increaseQuantity, decreaseQuantity, updateQuantity, saveCart, displayCart, updateCartCount } = require('./script');  // สมมติว่า script.js ถูก export ฟังก์ชันต่างๆ ไว้
 
+// Mocking localStorage
+beforeAll(() => {
+    global.localStorage = {
+        getItem: jest.fn(() => JSON.stringify([])),
+        setItem: jest.fn(),
+    };
+});
+
+describe('Cart functionality tests', () => {
     beforeEach(() => {
-        // ตั้งค่า cart เป็น global variable เพื่อให้ script.js ใช้งานได้
-        global.cart = []; // ใช้ global.cart
-
-        // สร้าง DOM จำลอง
-        document.body.innerHTML = `
-            <div id="cart-items"></div>
-            <div id="cart-total"></div>  <!-- เพิ่ม cart-total -->
-            <button id="checkoutButton"></button>
-        `;
-
-        // จำลอง localStorage
-        global.localStorage = {
-            setItem: jest.fn(),
-            getItem: jest.fn(),
-            removeItem: jest.fn(),
-            clear: jest.fn(),
-        };
+        // Clear cart before each test
+        global.localStorage.getItem.mockReturnValueOnce(JSON.stringify([]));
     });
 
-    test('should attach event listener to cart-items', () => {
-        // โหลด script.js หลังจากสร้าง DOM
-        require('./script.js'); // โหลดสคริปต์ที่กำลังทดสอบ
-
-        const cartItems = document.getElementById('cart-items');
-        expect(cartItems).not.toBeNull();
+    test('addToCart should add an item to the cart', () => {
+        addToCart(1, 'Product A', 100);  // Add product A to cart
+        expect(localStorage.setItem).toHaveBeenCalledTimes(1);  // Check that saveCart was called
+        expect(localStorage.setItem).toHaveBeenCalledWith('cart', JSON.stringify([{ id: 1, name: 'Product A', price: 100, quantity: 1 }]));
     });
 
-    test('add item to cart', () => {
-        require('./script.js'); // โหลดสคริปต์ที่กำลังทดสอบ
-        addToCart(1, 'Item 1', 100);
-        expect(global.cart.length).toBe(1); // ตรวจสอบว่าเพิ่มสินค้าลงในรถเข็น
-        expect(global.cart[0]).toEqual({
-            id: 1,
-            name: 'Item 1',
-            price: 100,
-            quantity: 1,
-        });
+    test('addToCart should not add an item if already in cart', () => {
+        global.localStorage.getItem.mockReturnValueOnce(JSON.stringify([{ id: 1, name: 'Product A', price: 100, quantity: 1 }]));
+        addToCart(1, 'Product A', 100);  // Try to add the same item again
+        expect(localStorage.setItem).not.toHaveBeenCalled();  // Ensure saveCart is not called
+        expect(window.alert).toHaveBeenCalledWith('สินค้านี้อยู่ในรถเข็นแล้ว!');  // Check if alert is triggered
     });
 
-    test('remove item from cart', () => {
-        require('./script.js'); // โหลดสคริปต์ที่กำลังทดสอบ
-        addToCart(1, 'Item 1', 100);
-        removeFromCart(1);
-        expect(global.cart.length).toBe(0); // ตรวจสอบว่าลบสินค้าจากรถเข็น
+    test('removeFromCart should remove an item from the cart', () => {
+        global.localStorage.getItem.mockReturnValueOnce(JSON.stringify([{ id: 1, name: 'Product A', price: 100, quantity: 1 }]));
+        removeFromCart(1);  // Remove product A from cart
+        expect(localStorage.setItem).toHaveBeenCalledWith('cart', JSON.stringify([]));  // Ensure cart is empty
     });
 
-    test('update quantity', () => {
-        require('./script.js'); // โหลดสคริปต์ที่กำลังทดสอบ
-        addToCart(1, 'Item 1', 100);
-        updateQuantity(1, 3); // อัปเดตจำนวน
-        expect(global.cart[0].quantity).toBe(3);
+    test('increaseQuantity should increase the quantity of an item', () => {
+        global.localStorage.getItem.mockReturnValueOnce(JSON.stringify([{ id: 1, name: 'Product A', price: 100, quantity: 1 }]));
+        increaseQuantity(1);  // Increase quantity of product A
+        expect(localStorage.setItem).toHaveBeenCalledWith('cart', JSON.stringify([{ id: 1, name: 'Product A', price: 100, quantity: 2 }]));
     });
 
-    test('save cart to localStorage', () => {
-        require('./script.js'); // โหลดสคริปต์ที่กำลังทดสอบ
-        addToCart(1, 'Item 1', 100);
-        saveCart();
-        expect(localStorage.setItem).toHaveBeenCalledWith('cart', JSON.stringify(global.cart));
+    test('decreaseQuantity should decrease the quantity of an item', () => {
+        global.localStorage.getItem.mockReturnValueOnce(JSON.stringify([{ id: 1, name: 'Product A', price: 100, quantity: 2 }]));
+        decreaseQuantity(1);  // Decrease quantity of product A
+        expect(localStorage.setItem).toHaveBeenCalledWith('cart', JSON.stringify([{ id: 1, name: 'Product A', price: 100, quantity: 1 }]));
     });
 
-    test('should add event listener to checkout button', () => {
-        const checkoutButton = document.getElementById('checkoutButton');
-        
-        // Mock addEventListener using jest.spyOn
-        const addEventListenerSpy = jest.spyOn(checkoutButton, 'addEventListener');
-
-        // โหลด script.js หลังจาก checkoutButton ถูกสร้าง
-        require('./script.js'); // โหลดสคริปต์
-
-        expect(addEventListenerSpy).toHaveBeenCalledWith('click', expect.any(Function));
+    test('updateQuantity should update the quantity of an item', () => {
+        global.localStorage.getItem.mockReturnValueOnce(JSON.stringify([{ id: 1, name: 'Product A', price: 100, quantity: 1 }]));
+        updateQuantity(1, 3);  // Update quantity of product A to 3
+        expect(localStorage.setItem).toHaveBeenCalledWith('cart', JSON.stringify([{ id: 1, name: 'Product A', price: 100, quantity: 3 }]));
     });
+
+    test('saveCart should save the cart to localStorage', () => {
+        const cart = [{ id: 1, name: 'Product A', price: 100, quantity: 1 }];
+        saveCart(cart);  // Save the cart
+        expect(localStorage.setItem).toHaveBeenCalledWith('cart', JSON.stringify(cart));  // Ensure saveCart works as expected
+    });
+});
+
+// Example of testing displayCart (UI testing would require jsdom or other tools)
+test('displayCart should display empty cart message when cart is empty', () => {
+    global.localStorage.getItem.mockReturnValueOnce(JSON.stringify([]));
+    const cartItems = { innerHTML: '' };
+    const cartTotal = { textContent: '' };
+    displayCart(cartItems, cartTotal);
+    expect(cartItems.innerHTML).toBe('<p class="cart-empty">ไม่มีสินค้าในรถเข็น</p>');
+    expect(cartTotal.textContent).toBe('0.00');
 });
