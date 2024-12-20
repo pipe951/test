@@ -14,8 +14,6 @@ beforeAll(() => {
   global.localStorage = {
     getItem: jest.fn(() => JSON.stringify([])),
     setItem: jest.fn(),
-    removeItem: jest.fn(),
-    clear: jest.fn(),
   };
 
   // Mocking document.getElementById
@@ -23,18 +21,18 @@ beforeAll(() => {
     if (id === 'cart-count') {
       return { 
         classList: { add: jest.fn(), remove: jest.fn() }, 
-        textContent: '' 
+        textContent: ''
       };
     } else if (id === 'cart-items') {
-      return { innerHTML: '' }; // Mock empty cart items
+      return { innerHTML: '' };
     } else if (id === 'cart-total') {
-      return { textContent: '' }; // Mock empty cart total
+      return { textContent: '' };
     } else if (id === 'checkoutButton') {
       return {
         addEventListener: jest.fn(),  // Mock addEventListener
       };
     }
-    return null;
+    return null;  // Return null for other elements
   });
 });
 
