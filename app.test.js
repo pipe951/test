@@ -5,7 +5,7 @@ describe('Cart functionality', () => {
 
     beforeEach(() => {
         // ตั้งค่า cart เป็น global variable เพื่อให้ script.js ใช้งานได้
-        global.cart = []; 
+        global.cart = []; // ใช้ global.cart
 
         // สร้าง DOM จำลอง
         document.body.innerHTML = `
@@ -60,4 +60,10 @@ describe('Cart functionality', () => {
     test('should add event listener to checkout button', () => {
         const checkoutButton = document.getElementById('checkoutButton');
         
-        // 
+        // Mock addEventListener using jest.spyOn
+        const addEventListenerSpy = jest.spyOn(checkoutButton, 'addEventListener');
+
+        require('./script.js'); // โหลดสคริปต์
+        expect(addEventListenerSpy).toHaveBeenCalledWith('click', expect.any(Function));
+    });
+});
