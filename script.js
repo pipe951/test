@@ -1,5 +1,5 @@
 // Initialize cart from localStorage
-let cart = JSON.parse(localStorage.getItem('cart')) || [];
+let cart = JSON.parse(localStorage.getItem('cart') || '[]');
 
 // Function to add item to cart
 function addToCart(id, name, price) {
