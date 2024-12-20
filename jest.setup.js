@@ -1,30 +1,26 @@
-// Mock localStorage globally
+// Mocking global methods and localStorage for testing
+
+// Mocking localStorage
 global.localStorage = {
-  getItem: jest.fn(() => JSON.stringify([])),  // mock localStorage.getItem ให้คืนค่า array เปล่า
-  setItem: jest.fn(),  // mock localStorage.setItem
-  removeItem: jest.fn(),  // mock localStorage.removeItem
-  clear: jest.fn(),  // mock localStorage.clear
+  getItem: jest.fn(() => JSON.stringify([])),
+  setItem: jest.fn(),
 };
 
-// Mocking document.getElementById
+// Mocking document.getElementById for all elements
 global.document.getElementById = jest.fn().mockImplementation((id) => {
+  const mockElement = { addEventListener: jest.fn() };  // Mock addEventListener
   if (id === 'cart-count') {
     return { 
-      classList: { add: jest.fn(), remove: jest.fn() },  // Mock classList.add and remove
-      textContent: '',  // Mock textContent
+      classList: { add: jest.fn(), remove: jest.fn() }, 
+      textContent: ''
     };
   } else if (id === 'cart-items') {
-    return { innerHTML: '' };  // Mock innerHTML
+    return { innerHTML: '' };
   } else if (id === 'cart-total') {
-    return { textContent: '' };  // Mock textContent
+    return { textContent: '' };
   } else if (id === 'checkoutButton') {
-    return {
-      addEventListener: jest.fn(),  // Mock addEventListener
-    };
+    return mockElement;  // Return mocked element for checkoutButton
   }
-  return null;  // Default return for other ids
-});
 
-// Mocking global functions that are used in tests
-global.updateCartCount = jest.fn();  // Mock updateCartCount
-global.displayCart = jest.fn();  // Mock displayCart
+  return mockElement;  // Default return for other elements
+});
